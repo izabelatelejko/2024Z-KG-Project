@@ -1,0 +1,9 @@
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?iataCode ?cityName WHERE {
+  ?airport dbo:iataLocationIdentifier ?iataCode .
+  ?airport dbo:city ?city .
+  ?city rdfs:label ?cityName .
+  FILTER (lang(?cityName) = "en")
+}

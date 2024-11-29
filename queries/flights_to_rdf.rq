@@ -1,0 +1,11 @@
+PREFIX fx: <http://sparql.xyz/facade-x/ns/>
+PREFIX xyz: <http://sparql.xyz/facade-x/data/>
+
+CONSTRUCT { ?s ?p ?o }
+WHERE {
+  SERVICE <x-sparql-anything:> {
+    fx:properties fx:location "flights_sample.json" ;
+                  fx:media-type "application/json" .
+    ?s ?p ?o .
+  }
+}

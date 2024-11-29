@@ -1,0 +1,97 @@
+@prefix fx:  <http://sparql.xyz/facade-x/ns/> .
+@prefix xyz: <http://sparql.xyz/facade-x/data/> .
+
+[ a       fx:root ;
+  <http://www.w3.org/1999/02/22-rdf-syntax-ns#_1>
+          [ xyz:aircraft_icao     "B777" ;
+            xyz:airline_iata      "AA" ;
+            xyz:airline_icao      "AAL" ;
+            xyz:arr_iata          "LHR" ;
+            xyz:arr_icao          "EGLL" ;
+            xyz:arr_terminals     [ <http://www.w3.org/1999/02/22-rdf-syntax-ns#_1>
+                              "5" ] ;
+            xyz:arr_time          "20:30" ;
+            xyz:arr_time_utc      "01:30" ;
+            xyz:cs_airline_iata   "BA" ;
+            xyz:cs_flight_iata    "BA123" ;
+            xyz:cs_flight_number  "123" ;
+            xyz:days              [ <http://www.w3.org/1999/02/22-rdf-syntax-ns#_1>
+                                            "tue" ;
+                                    <http://www.w3.org/1999/02/22-rdf-syntax-ns#_2>
+                                            "thu" ;
+                                    <http://www.w3.org/1999/02/22-rdf-syntax-ns#_3>
+                                            "sun"
+                                  ] ;
+            xyz:dep_iata          "JFK" ;
+            xyz:dep_icao          "KJFK" ;
+            xyz:dep_terminals     [ <http://www.w3.org/1999/02/22-rdf-syntax-ns#_1>
+                              "4" ] ;
+            xyz:dep_time          "10:30" ;
+            xyz:dep_time_utc      "15:30" ;
+            xyz:duration          "480"^^<http://www.w3.org/2001/XMLSchema#int> ;
+            xyz:flight_iata       "AA123" ;
+            xyz:flight_icao       "AAL123" ;
+            xyz:flight_number     "123" ;
+            xyz:updated           "2023-11-24T10:00:00.000Z"
+          ] ;
+  <http://www.w3.org/1999/02/22-rdf-syntax-ns#_2>
+          [ xyz:aircraft_icao     "A330" ;
+            xyz:airline_iata      "DL" ;
+            xyz:airline_icao      "DAL" ;
+            xyz:arr_iata          "AMS" ;
+            xyz:arr_icao          "EHAM" ;
+            xyz:arr_terminals     [ <http://www.w3.org/1999/02/22-rdf-syntax-ns#_1>
+                              "B" ] ;
+            xyz:arr_time          "04:00" ;
+            xyz:arr_time_utc      "09:00" ;
+            xyz:cs_airline_iata   "KL" ;
+            xyz:cs_flight_iata    "KL456" ;
+            xyz:cs_flight_number  "456" ;
+            xyz:days              [ <http://www.w3.org/1999/02/22-rdf-syntax-ns#_1>
+                                            "mon" ;
+                                    <http://www.w3.org/1999/02/22-rdf-syntax-ns#_2>
+                                            "fri"
+                                  ] ;
+            xyz:dep_iata          "ATL" ;
+            xyz:dep_icao          "KATL" ;
+            xyz:dep_terminals     [ <http://www.w3.org/1999/02/22-rdf-syntax-ns#_1>
+                              "S" ] ;
+            xyz:dep_time          "14:00" ;
+            xyz:dep_time_utc      "19:00" ;
+            xyz:duration          "600"^^<http://www.w3.org/2001/XMLSchema#int> ;
+            xyz:flight_iata       "DL456" ;
+            xyz:flight_icao       "DAL456" ;
+            xyz:flight_number     "456" ;
+            xyz:updated           "2023-11-24T09:00:00.000Z"
+          ] ;
+  <http://www.w3.org/1999/02/22-rdf-syntax-ns#_3>
+          [ xyz:aircraft_icao     "B787" ;
+            xyz:airline_iata      "UA" ;
+            xyz:airline_icao      "UAL" ;
+            xyz:arr_iata          "FRA" ;
+            xyz:arr_icao          "EDDF" ;
+            xyz:arr_terminals     [ <http://www.w3.org/1999/02/22-rdf-syntax-ns#_1>
+                              "1" ] ;
+            xyz:arr_time          "15:00" ;
+            xyz:arr_time_utc      "23:00" ;
+            xyz:cs_airline_iata   "LH" ;
+            xyz:cs_flight_iata    "LH789" ;
+            xyz:cs_flight_number  "789" ;
+            xyz:days              [ <http://www.w3.org/1999/02/22-rdf-syntax-ns#_1>
+                                            "wed" ;
+                                    <http://www.w3.org/1999/02/22-rdf-syntax-ns#_2>
+                                            "sat"
+                                  ] ;
+            xyz:dep_iata          "SFO" ;
+            xyz:dep_icao          "KSFO" ;
+            xyz:dep_terminals     [ <http://www.w3.org/1999/02/22-rdf-syntax-ns#_1>
+                              "G" ] ;
+            xyz:dep_time          "23:00" ;
+            xyz:dep_time_utc      "07:00" ;
+            xyz:duration          "660"^^<http://www.w3.org/2001/XMLSchema#int> ;
+            xyz:flight_iata       "UA789" ;
+            xyz:flight_icao       "UAL789" ;
+            xyz:flight_number     "789" ;
+            xyz:updated           "2023-11-24T08:00:00.000Z"
+          ]
+] .

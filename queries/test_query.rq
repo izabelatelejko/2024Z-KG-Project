@@ -1,0 +1,21 @@
+PREFIX xyz: <http://sparql.xyz/facade-x/data/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT 
+  (?flight_number AS ?FlightNumber)
+  (?dep_iata AS ?DepartureIATA)
+  (?arr_iata AS ?ArrivalIATA)
+  (?dep_time_utc AS ?DepartureTimeUTC)
+  (?arr_time_utc AS ?ArrivalTimeUTC)
+  (GROUP_CONCAT(?day; separator=", ") AS ?OperatingDays)
+WHERE {
+  ?flight xyz:flight_number ?flight_number ;
+          xyz:dep_iata ?dep_iata ;
+          xyz:arr_iata ?arr_iata ;
+          xyz:dep_time_utc ?dep_time_utc ;
+          xyz:arr_time_utc ?arr_time_utc ;
+          xyz:days ?daysNode .
+  ?daysNode ?index ?day .
+  FILTER(STRSTARTS(STR(?index), STR(rdf:_)))
+}
+GROUP BY ?flight_number ?dep_iata ?arr_iata ?dep_time_utc ?arr_time_utc

@@ -1,0 +1,17 @@
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dbr: <http://dbpedia.org/resource/>
+
+SELECT ?attraction ?attractionName ?categoryLabel ?desc
+WHERE {
+  ?attraction dbo:location dbr:Warsaw ;
+             rdfs:label ?attractionName ;
+             dbo:abstract ?desc ;
+             rdf:type ?category .
+  ?category rdfs:label ?categoryLabel .
+  FILTER (lang(?attractionName) = "en")
+  FILTER (lang(?desc) = "en")
+  FILTER (lang(?categoryLabel) = "en")
+}
+LIMIT 1000

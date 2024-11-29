@@ -1,0 +1,11 @@
+SELECT ?attraction ?attractionLabel ?categoryLabel ?description
+WHERE {
+  ?attraction wdt:P31 wd:Q570116 ;
+             wdt:P131 wd:Q270 ;
+             schema:description ?description ;
+             wdt:P31 ?category .
+  ?category rdfs:label ?categoryLabel .
+  FILTER (LANG(?description) = "en")
+  FILTER (LANG(?categoryLabel) = "en")
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
