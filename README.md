@@ -8,6 +8,7 @@ What we prepared:
 * non KG data sources: Flights Schedules (there is an API that requires a manual approval - we do not know if this will work), TUI website - list of hotels WIP
 * KG data sources: DBpedia (for mapping IATA codes)
 * we managed to create KG from json data - flight schedules and run test quaries on it with pysparql anything
+* sample queries searching for attractions
 
 Questions:
 * If we can't access the Flights Schedules API, can we generate the data?
