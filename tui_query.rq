@@ -1,0 +1,16 @@
+# must be run in a docker sparql-anything
+PREFIX fx: <http://sparql.xyz/facade-x/ns/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX xhtml: <http://www.w3.org/1999/xhtml#>
+
+select distinct ?o
+WHERE {
+  SERVICE <x-sparql-anything:html.browser=chromium,html.browser.wait=5> {
+    fx:properties fx:location "https://tui.pl/all-inclusive" .
+    fx:properties fx:media-type "text/html" .
+    ?s xhtml:hotelname ?o .
+    FILTER (isLiteral(?o) && datatype(?o) = xsd:string && 
+            !regex(?o, "[0-9]") && 
+            !regex(?o, "[^a-zA-Z ]")) 
+  }
+}
