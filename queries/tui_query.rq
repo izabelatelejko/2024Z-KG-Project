@@ -1,16 +1,25 @@
-# must be run in a docker sparql-anything
 PREFIX fx: <http://sparql.xyz/facade-x/ns/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX xhtml: <http://www.w3.org/1999/xhtml#>
+PREFIX ns: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX spec: <https://html.spec.whatwg.org/#>
 
-select distinct ?o
+select distinct ?hotelName ?destination ?price
 WHERE {
   SERVICE <x-sparql-anything:html.browser=chromium,html.browser.wait=5> {
     fx:properties fx:location "https://tui.pl/all-inclusive" .
     fx:properties fx:media-type "text/html" .
-    ?s xhtml:hotelname ?o .
-    FILTER (isLiteral(?o) && datatype(?o) = xsd:string && 
-            !regex(?o, "[0-9]") && 
-            !regex(?o, "[^a-zA-Z ]")) 
+    ?s ns:type xhtml:a .
+    ?s xhtml:hotelname ?hotelName .
+    ?s xhtml:destination ?destination .
+    ?s xhtml:class ?class .
+    ?s xhtml:data-testid "offer-tile-button" .
+    FILTER(CONTAINS(STR(?class), "offer-tile-aside__button")) .
+	  ?parent ns:_1|ns:_2|ns:_3|ns:_4 ?s .
+    ?parent ns:_1+ ?child .
+    ?child ns:type xhtml:span .
+    ?child xhtml:class ?nClass .
+    FILTER(CONTAINS(STR(?nClass), "price")) .
+    ?child spec:innerText ?price .
   }
 }
