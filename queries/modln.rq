@@ -1,0 +1,34 @@
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX cp: <http://schemas.openxmlformats.org/package/2006/metadata/core-properties/>
+PREFIX xyz: <http://sparql.xyz/facade-x/data/>
+PREFIX fx: <http://sparql.xyz/facade-x/ns/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX xhtml: <http://www.w3.org/1999/xhtml#>
+PREFIX spec: <https://html.spec.whatwg.org/#>
+PREFIX ns: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+select distinct ?flightId ?destText ?depTimeText ?stateText
+WHERE {
+  SERVICE <x-sparql-anything:html.browser=chromium,html.browser.wait=5> {
+    fx:properties fx:location "https://www.modlinairport.pl/pasazer/rozklad-lotow" .
+    fx:properties fx:media-type "text/html" .
+    ?node ns:type xhtml:table .
+    ?node xhtml:class ?class .
+    FILTER(CONTAINS(?class, "arrivals")) .
+    ?node (ns:_1|ns:_2|ns:_3|ns:_4|ns:_5|ns:_6|ns:_7|ns:_8|ns:_9|ns:_10|ns:_11|ns:_12|ns:_13|ns:_14)+ ?child .
+    ?child ns:type xhtml:td .
+    ?child spec:innerText ?childText .
+    ?parent ns:_1|ns:_2|ns:_3|ns:_4|ns:_5|ns:_6|ns:_7|ns:_8|ns:_9|ns:_10|ns:_11|ns:_12|ns:_13|ns:_14 ?child .
+    ?parent spec:innerHTML ?inner .
+    ?parent ns:_1 ?flight .
+    ?flight spec:innerText ?flightId .
+    ?parent ns:_2 ?dest .
+    ?dest spec:innerText ?destText .
+    ?parent ns:_3 ?depTime .
+    ?depTime spec:innerText ?depTimeText .
+    OPTIONAL{
+    ?parent ns:_4 ?state .
+    ?state spec:innerText ?stateText .
+    }
+  }
+}
