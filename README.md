@@ -108,8 +108,9 @@ Sample Output:
     1. It's hard to figure out that you need the server to query html endpoints and the cli tool does not have html functionality altogether for some reason
     2. Nowhere in the docs is there an example of actually using http headers in the query, and their naming convention is normal (Content-Type) not something.something 
 4. Sparql feature request -- path expressions like + ? * work only with explicit properties, so its impossible to use them with data from sparql-anything in a sane manner as ns:_# is common when parsing json, html or anything with a list
-
-30.11.2024
+5. We are not sure if this is really a bug, and whether it is connected to sparql anything, but in one query we found out that changing variable name (e.g. `attractionName` -> `attractionNameEn`) would result in empty output table - no error, just no results, when with the other variable name we obtain valid results. Potential explanation is that language tags as variable name suffixes are somehow forbidden, but we couldn't find any information on that.
+   
+## 30.11.2024
 
 What we prepared:
 * Project idea: Travel assistant - gather data related to traveling (flights, hotels etc.), we want to define some query templates that could be populated with parameters (read from some file) and as a result we would obtain travel proposals (meeting the criterias like budget, desired destinations, personalized overview of attractions).
