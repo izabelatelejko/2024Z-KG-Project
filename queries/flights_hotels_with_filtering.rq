@@ -1,0 +1,65 @@
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX cp: <http://schemas.openxmlformats.org/package/2006/metadata/core-properties/>
+PREFIX xyz: <http://sparql.xyz/facade-x/data/>
+PREFIX fx: <http://sparql.xyz/facade-x/ns/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX xhtml: <http://www.w3.org/1999/xhtml#>
+PREFIX spec: <https://html.spec.whatwg.org/#>
+PREFIX ns: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dbr: <http://dbpedia.org/resource/>
+PREFIX fa: <https://w3id.org/sparql-anything#>
+
+SELECT DISTINCT (?city as ?destinationCity) (?depTimeText as ?flightDepartureTime) (?name as ?hotelName) (?price as ?hotelPrice) ?hotelPricePerDay (?duration as ?stayDuration) (?standard as ?hotelStandard) 
+WHERE {
+  SERVICE <x-sparql-anything:> {
+    fx:properties fx:location "https://www.tui.pl/api/services/tui-search/api/search/offers";
+    fx:http.payload "{\"childrenBirthdays\":[],\"departureDateFrom\":\"10.12.2024\",\"departureDateTo\":\"31.01.2025\",\"departuresCodes\":[],\"destinationsCodes\":[],\"durationFrom\":6,\"durationTo\":10,\"occupancies\":[],\"numberOfAdults\":2,\"offerType\":\"BY_CAR\",\"site\":\"wypoczynek/wyniki-wyszukiwania-nocleg?pm_source=NOCLEGI&pm_name=Wegry&q=%3Aprice%3AstartDate%3A01%2E04%2E2025%3AendDate%3A15%2E11%2E2025%3Ac%3ABUD%3Ac%3ABUD44%3Ac%3ABUD21%3Ac%3ABUD02%3AbyPlane%3AF%3AtripType%3ADW%3AdF%3A6%3AdT%3A14%3ActAdult%3A2%3AadditionalType%3AGT03%23TUZ%2DS25&pm_source=SG&pm_name=9_wegry_\",\"filters\":[{\"filterId\":\"priceSelector\",\"selectedValues\":[]},{\"filterId\":\"board\",\"selectedValues\":[]},{\"filterId\":\"amountRange\",\"selectedValues\":[]},{\"filterId\":\"minHotelCategory\",\"selectedValues\":[\"defaultHotelCategory\"]},{\"filterId\":\"tripAdvisorRating\",\"selectedValues\":[\"defaultTripAdvisorRating\"]},{\"filterId\":\"beach_distance\",\"selectedValues\":[\"defaultBeachDistance\"]},{\"filterId\":\"facilities\",\"selectedValues\":[]},{\"filterId\":\"WIFI\",\"selectedValues\":[]},{\"filterId\":\"sport_and_wellness\",\"selectedValues\":[]},{\"filterId\":\"room_type\",\"selectedValues\":[]},{\"filterId\":\"room_attributes\",\"selectedValues\":[]},{\"filterId\":\"hotel_chain_dw\",\"selectedValues\":[]},{\"filterId\":\"additionalType\",\"selectedValues\":[]}],\"metaData\":{\"page\":1,\"pageSize\":1000,\"sorting\":\"price\"}}";
+    fx:http.method "POST" ;
+    fx:media-type "application/json" ;
+    fx:http.header.Content-Type "application/json" ;
+    fx:http.header.Accept "application/json" .
+    
+    ?root rdf:type fx:root .
+    ?root xyz:offers ?a .
+	?a ?any ?b .
+    ?b xyz:hotelName ?name ;
+       xyz:discountPerPersonPrice ?price ;
+       xyz:duration ?duration ;
+       xyz:hotelStandard ?standard ;
+       xyz:city ?city ;
+  }
+  SERVICE <x-sparql-anything:> {
+    fx:properties fx:location "https://www.modlinairport.pl/pasazer/rozklad-lotow" .
+    fx:properties fx:media-type "text/html" .
+    ?node ns:type xhtml:table .
+    ?node xhtml:class ?class .
+    FILTER(CONTAINS(?class, "departures")) .
+    ?node (ns:_1|ns:_2|ns:_3|ns:_4|ns:_5|ns:_6|ns:_7|ns:_8|ns:_9|ns:_10|ns:_11|ns:_12|ns:_13|ns:_14)+ ?child .
+    ?child ns:type xhtml:td .
+    ?child spec:innerText ?childText .
+    ?parent ns:_1|ns:_2|ns:_3|ns:_4|ns:_5|ns:_6|ns:_7|ns:_8|ns:_9|ns:_10|ns:_11|ns:_12|ns:_13|ns:_14 ?child .
+    ?parent spec:innerHTML ?inner .
+    ?parent ns:_1 ?flight .
+    ?flight spec:innerText ?flightId .
+    ?parent ns:_2 ?dest .
+    ?dest spec:innerText ?destText .
+    ?parent ns:_3 ?depTime .
+    ?depTime spec:innerText ?depTimeText .
+    OPTIONAL {
+      ?parent ns:_4 ?state .
+      ?state spec:innerText ?stateText .
+    }
+  }
+  
+  FILTER (CONTAINS(lcase(STR(?destText)), lcase(STR(?city))))
+  BIND(xsd:integer(?price) AS ?intPrice)
+  BIND(xsd:integer(?intPrice/?duration) as ?hotelPricePerDay)
+
+  FILTER(?hotelPricePerDay < 420)
+  FILTER(?duration = 6)
+  FILTER(?standard >= 3.5)
+}
+ORDER BY ?hotelPricePerDay
