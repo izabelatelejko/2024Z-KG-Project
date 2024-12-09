@@ -26,7 +26,7 @@ Sample Output:
 | FR 9259      | MALTA        | 11:55           | OCZEKIWANY    |
 
 
-#### Attracrions
+#### Attractions
 
 Query `dbpedia_attractions.rq` contains the information about places and attractions in chosen city.
 
