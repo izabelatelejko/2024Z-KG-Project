@@ -26,6 +26,22 @@ Sample Output:
 | FR 9259      | MALTA        | 11:55           | OCZEKIWANY    |
 
 
+
+#### TUI hotels
+Query `tui_hotels.rq` requests data from the tui api returning information about all? avaliable hotels. The query must be somehow updated with parameters to give up to date results.
+Sample Output: 
+| Location             | Name                                   | Price | Duration          | Rating           |
+|----------------------|----------------------------------------|------|----------------|------------------|
+| Eberstein           | Biolandhaus Arche                     | 1741 | `"6"^^xsd:int`  | `"0.0"^^xsd:double`  |
+| Split               | Tifani Luxury Rooms                   | 1739 | `"6"^^xsd:int`  | `"4.0"^^xsd:double`  |
+| Bar                 | Stara Carsija Resort And Spa          | 1739 | `"6"^^xsd:int`  | `"4.5"^^xsd:double`  |
+| Dubrownik           | Valamar Lacroma Dubrovnik             | 1739 | `"6"^^xsd:int`  | `"4.0"^^xsd:double`  |
+| Dubrownik           | Hotel Lapad                           | 1738 | `"6"^^xsd:int`  | `"4.0"^^xsd:double`  |
+| Biograd na Moru     | Hotel Ilirija                         | 1736 | `"7"^^xsd:int`  | `"4.0"^^xsd:double`  |
+| Riva                | Hotel Europa - Skypool & Panorama     | 1735 | `"6"^^xsd:int`  | `"4.0"^^xsd:double`  |
+
+
+
 #### Attractions
 
 Query `dbpedia_attractions.rq` contains the information about places and attractions in chosen city.
