@@ -70,6 +70,37 @@ Sample Output:
 | Barcelona     | CaixaBank              | "CaixaBank, S.A., formerly Criteria CaixaCorp, is a major Spanish financial institution headquartered in Valencia, Spain. It is Spain's third-largest lender and operates an extensive branch network serving millions of customers. The bank is also involved in telecommunications and energy investments."@en                                                                                                                      | agent, organisation, company, bank |
 | Liverpool     | Calderstones House     | "Calderstones Mansion House, located in Calderstones Park, Liverpool, is a Grade II listed building built in 1828. It has served various purposes, including as a residence, council offices, and cultural venue. It is now a center for literature and shared reading, managed by The Reader, with a permanent exhibition on local history."@en                                                                                           | architectural structure, building |
 
+#### Flights and hotels
+
+Query `flights_hotels.rq` lists all available combinations of flights and hotels. The hotel rooms are for 2 people and displayed price is per one person.
+
+Sample Output:
+
+| Destination City | Flight Departure Time | Hotel Name                 | Hotel Price | Stay Duration | Hotel Standard |
+|------------------|-----------------------|---------------------------|-------------|---------------|----------------|
+| Barcelona        | 14:25                | BCN Urban Bonavista Hostel | 1748        | 6             | 2.0            |
+| Barcelona        | 14:25                | Ingles                     | 1771        | 6             | 1.0            |
+| Rzym             | 09:10                | Anfiteatro Flavio          | 1779        | 6             | 3.0            |
+| Rzym             | 09:10                | Hotel Zone                 | 1779        | 6             | 4.0            |
+
+
+#### Flights and hotels - with filters
+
+Query `flights_hotels_with_filtering.rq` lists the combinations of flights and hotels that meet the requested criterias as price per day, stay duration and minimum hotel standard, ordered by price per day.
+
+Sample Output:
+
+| Destination City | Flight Departure Time | Hotel Name                                   | Hotel Price | Hotel Price Per Day | Stay Duration | Hotel Standard |
+|------------------|-----------------------|---------------------------------------------|-------------|----------------------|---------------|----------------|
+| Barcelona        | 14:25                | Catalonia Catedral                          | 2139        | 356                  | 6             | 4.0            |
+| Rzym             | 09:10                | Diana Roof Garden                           | 2144        | 357                  | 6             | 4.0            |
+| Barcelona        | 14:25                | Catalonia Passeig de Gracia                 | 2163        | 360                  | 6             | 4.0            |
+| Rzym             | 09:10                | Comfort Hotel Bolivar                       | 2160        | 360                  | 6             | 4.0            |
+| Barcelona        | 14:25                | Catalonia Square                            | 2187        | 364                  | 6             | 4.0            |
+| Londyn           | 06:05                | Grand Plaza Serviced Apartments             | 2211        | 368                  | 6             | 4.0            |
+| Barcelona        | 14:25                | Sensation Sagrada Familia                   | 2258        | 376                  | 6             | 4.0            |
+| Londyn           | 06:05                | Thistle London Hyde Park Kensington Gardens | 2283        | 380                  | 6             | 4.0            |
+
 
 30.11.2024
 
