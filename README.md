@@ -101,6 +101,13 @@ Sample Output:
 | Barcelona        | 14:25                | Sensation Sagrada Familia                   | 2258        | 376                  | 6             | 4.0            |
 | Londyn           | 06:05                | Thistle London Hyde Park Kensington Gardens | 2283        | 380                  | 6             | 4.0            |
 
+## Feedback
+1. Feature request - execute scripts with the browser before querying html -- to overcome cloudflare captchas etc
+2. Bug report -- cli tool does not offer html functionality
+3. Documentation:
+    1. It's hard to figure out that you need the server to query html endpoints and the cli tool does not have html functionality altogether for some reason
+    2. Nowhere in the docs is there an example of actually using http headers in the query, and their naming convention is normal (Content-Type) not something.something 
+4. Sparql feature request -- path expressions like + ? * work only with explicit properties, so its impossible to use them with data from sparql-anything in a sane manner as ns:_# is common when parsing json, html or anything with a list
 
 30.11.2024
 
