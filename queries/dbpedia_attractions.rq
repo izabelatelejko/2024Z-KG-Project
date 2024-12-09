@@ -3,15 +3,22 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dbr: <http://dbpedia.org/resource/>
 
-SELECT ?attraction ?attractionName ?categoryLabel ?desc
+SELECT (STR(?cityNamePolish) AS ?cityName) ?attractionName ?attractionNamePolish ?categoryLabel ?desc
 WHERE {
-  ?attraction dbo:location dbr:Warsaw ;
-             rdfs:label ?attractionName ;
-             dbo:abstract ?desc ;
-             rdf:type ?category .
-  ?category rdfs:label ?categoryLabel .
-  FILTER (lang(?attractionName) = "en")
-  FILTER (lang(?desc) = "en")
-  FILTER (lang(?categoryLabel) = "en")
-}
+?attraction dbo:location ?location ;
+               rdfs:label ?attractionName ;
+               dbo:abstract ?desc ;
+               rdf:type ?category .
+OPTIONAL{?attraction rdfs:label ?attractionNamePolish .
+FILTER (lang(?attractionNamePolish) = "pl") .} .
+
+    ?category rdfs:label ?categoryLabel .
+    ?location rdfs:label ?cityNamePolish .
+    FILTER (lang(?cityNamePolish) = "pl")
+    FILTER (lang(?attractionName) = "en")
+    FILTER (lang(?desc) = "en")
+    FILTER (lang(?categoryLabel) = "en")
+BIND(STR(?cityNamePolish) AS ?cityNamePolishStr) .
+VALUES ?cityNamePolishStr {"Warszawa"} .
+  }
 LIMIT 1000
