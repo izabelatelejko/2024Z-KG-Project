@@ -150,3 +150,36 @@ Jan 15:
 1. Finish documentation
 2. Query templates for quering our merged graph to get travel proposals
 3. Jupyter notebook showcasing the capabilities of our solution
+
+## 09.12.2024
+
+What we prepared:
+    1. Final choice of our datasources: TUI api for hotels, Modlin Airport website for flights and DBPedia for attractions
+    2. Queries for extracting data from each of them: using sparql-anything-server for obtaining the data from the internet
+    3. Queries that combine the data from each source
+    4. Queries that filter the combined data
+    5. Examples of the combined data
+    6. Presentation of the querying of data
+    7. Repository for our project
+    8. A list of suggestions for sparql-anything and sparql
+
+What we presented:
+    1. The repository https://github.com/izabelatelejko/2024Z-KG-Project
+
+
+Questions:
+    1. How to optimize quering dbpedia
+    2. How to submit a feature request to sparql
+    3. How to put a limit statement in a service
+
+What answers we received:
+    1. Use python script to query for single cities and combine results
+    2. It's complicated -- to be continued
+    3. The service statement by default has only the WHERE part but select and the rest may be added by wrapping the service in a subquery
+    
+Project Plan:
+    Final milestone:
+        1. Prepare python scripts for easier querying of the data
+        2. Prepare issues for sparql-anything github
+        3. Jupyter notebook with usage examples
+        4. Documentation of our solution
