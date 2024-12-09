@@ -6,7 +6,7 @@ Project for the 2024Z Knowledge Graphs course
 | **Source** | **Type**                 | **Content Description**                                                                                     | 
 |------------|--------------------------|-------------------------------------------------------------------------------------------------------------|
 | **Modlin Airport** ([Flight Schedules](https://www.modlinairport.pl/pasazer/rozklad-lotow)) | Non-KG HTML            | Flight schedules for the next 24 hours for Warsaw Modlin airport. Includes flight IDs, destinations, and departure times. | 
-| **Tui Website**                        | Non-KG HTML/JSON       | Contains travel-related information such as vacation packages, flight schedules, and destination data.      | 
+| **Tui Website** ([Hotels](https://tui.pl/all-inclusive))  | Non-KG HTML/JSON       | Contains travel-related information such as hotel information and prices.      | 
 | **DBpedia** ([DBpedia](https://www.dbpedia.org)) | KG                     | Structured knowledge base containing information on cities, landmarks, and attractions linked to flight destinations.   | 
 
 ## Queries for Single Data Sources
