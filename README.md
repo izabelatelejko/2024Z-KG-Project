@@ -154,32 +154,36 @@ Jan 15:
 ## 09.12.2024
 
 What we prepared:
-    1. Final choice of our datasources: TUI api for hotels, Modlin Airport website for flights and DBPedia for attractions
-    2. Queries for extracting data from each of them: using sparql-anything-server for obtaining the data from the internet
-    3. Queries that combine the data from each source
-    4. Queries that filter the combined data
-    5. Examples of the combined data
-    6. Presentation of the querying of data
-    7. Repository for our project
-    8. A list of suggestions for sparql-anything and sparql
+1. Final choice of our datasources: TUI api for hotels, Modlin Airport website for flights and DBPedia for attractions
+2. Queries for extracting data from each of them: using sparql-anything-server for obtaining the data from the internet
+3. Queries that combine the data from each source
+4. Queries that filter the combined data
+5. Examples of the combined data
+6. Presentation of the querying of data
+7. Repository for our project
+8. A list of suggestions for sparql-anything and sparql
 
 What we presented:
-    1. The repository https://github.com/izabelatelejko/2024Z-KG-Project
-
+1. The repository https://github.com/izabelatelejko/2024Z-KG-Project
+2. The issues we had with dbpedia query
+3. Sample outputs from all the queries
 
 Questions:
-    1. How to optimize quering dbpedia
-    2. How to submit a feature request to sparql
-    3. How to put a limit statement in a service
+1. How to optimize quering dbpedia?
+2. How to submit a feature request to sparql?
+3. How to put a limit statement in a service?
 
 What answers we received:
-    1. Use python script to query for single cities and combine results
-    2. It's complicated -- to be continued
-    3. The service statement by default has only the WHERE part but select and the rest may be added by wrapping the service in a subquery
+1. To handle dbpedia issues - use python script to query for single cities and combine results
+2. It's complicated -- to be continued
+3. The service statement by default has only the WHERE part but select and the rest may be added by wrapping the service in a subquery
     
-Project Plan:
-    Final milestone:
-        1. Prepare python scripts for easier querying of the data
-        2. Prepare issues for sparql-anything github
-        3. Jupyter notebook with usage examples
-        4. Documentation of our solution
+Project Plan - Final milestone:
+1. Prepare python scripts for easier querying of the data (dbpedia)
+2. Try to improve the mapping of airports to cities
+3. Create query templates (jinja) to popluate with parameters specified by users
+4. Prepare issues for sparql-anything github
+5. Jupyter notebook with usage examples
+6. Documentation of our solution
+
+        
