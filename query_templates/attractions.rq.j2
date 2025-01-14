@@ -1,0 +1,29 @@
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dbr: <http://dbpedia.org/resource/>
+
+SELECT (STR(?cityNamePolish) AS ?cityName) ?attractionName ?attractionNamePolish ?categoryLabel ?desc
+WHERE {
+    SERVICE <http://dbpedia.org/sparql> {
+        ?attraction dbo:location ?location ;
+                   rdfs:label ?attractionName ;
+                   dbo:abstract ?desc ;
+                   rdf:type ?category .
+        OPTIONAL {
+            ?attraction rdfs:label ?attractionNamePolish .
+            FILTER (lang(?attractionNamePolish) = "pl") .
+        } .
+
+        ?category rdfs:label ?categoryLabel .
+        ?location rdfs:label ?cityNamePolish .
+        FILTER (lang(?cityNamePolish) = "pl")
+        FILTER (lang(?attractionName) = "en")
+        FILTER (lang(?desc) = "en")
+        FILTER (lang(?categoryLabel) = "en")
+        BIND(STR(?cityNamePolish) AS ?cityNamePolishStr) .
+        VALUES ?cityNamePolishStr { "{{ city }}" } .
+    }
+}
+LIMIT {{ limit }}
+

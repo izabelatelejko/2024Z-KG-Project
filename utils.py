@@ -12,6 +12,13 @@ from jinja2 import Template
 
 engine = sa.SparqlAnything()
 
+def get_attractions_for_flights(flights: pd.DataFrame) -> pd.DataFrame:
+    dfs = []
+    for ix, row in get_flights().iterrows():
+        dest = row["destText"].split()[0].lower().capitalize()
+        dfs.append(get_attractions_for_city(dest))
+    return pd.concat(dfs)
+
 
 def get_flights() -> pd.DataFrame:
     """Get flights from Modlin Airport."""
@@ -23,6 +30,18 @@ def get_flights() -> pd.DataFrame:
         output_type=pd.DataFrame,
     )
 
+    return df
+
+def get_attractions_for_city(city, limit=1000):
+    with open("query_templates/attractions.rq.j2", "r") as file:
+        template_str = file.read()
+    template = Template(template_str)
+    query = template.render(city=city, limit=limit)
+    print(query)
+    df = engine.select(
+        query=query,
+        output_type=pd.DataFrame
+    )
     return df
 
 
