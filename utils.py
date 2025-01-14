@@ -12,7 +12,14 @@ from jinja2 import Template
 
 engine = sa.SparqlAnything()
 
+
 def get_attractions_for_flights(flights: pd.DataFrame) -> pd.DataFrame:
+    """Get attractions for flights retrieved by get_flights
+    It requires the flights dataframe to have a destText column which is a string
+    :param pandas.DataFrame flights: - dataframe with column destText containing a string
+    :rtype: pandas.DataFrame
+    :return: DataFrame of attractions located in speciified city, obtained from dbpedia
+    """
     dfs = []
     for ix, row in get_flights().iterrows():
         dest = row["destText"].split()[0].lower().capitalize()
@@ -21,7 +28,10 @@ def get_attractions_for_flights(flights: pd.DataFrame) -> pd.DataFrame:
 
 
 def get_flights() -> pd.DataFrame:
-    """Get flights from Modlin Airport."""
+    """Get flights from Modlin Airport using pysparkl anything to scrape the website.
+    :rtype: pandas.DataFrame
+    :return: DataFrame containing flights from Modlin Airport
+    """
     query_file = "queries/modlin.rq"
 
     df = engine.select(
@@ -32,7 +42,14 @@ def get_flights() -> pd.DataFrame:
 
     return df
 
-def get_attractions_for_city(city, limit=1000):
+
+def get_attractions_for_city(city: str, limit: int = 1000) -> pd.DataFrame:
+    """Get attractions for a specified city using pysparql-anything to query dbpedia
+    :param str city: City to lookup attractions in
+    :param int limit: limit of returned attractions
+    :rtype: pandas.DataFrame
+    :return: DataFrame containing the obtain attractions
+    """
     with open("query_templates/attractions.rq.j2", "r") as file:
         template_str = file.read()
     template = Template(template_str)
@@ -46,7 +63,11 @@ def get_attractions_for_city(city, limit=1000):
 
 
 def get_hotels() -> pd.DataFrame:
-    """Get hotels from TUI."""
+    """Get hotels from TUI.
+    
+    :rtype: pandas.DataFrame
+    :return: DataFrame containing hotels
+    """
     query_file = "queries/tui_hotels.rq"
 
     df = engine.select(query=query_file, output_type=pd.DataFrame)
@@ -55,7 +76,10 @@ def get_hotels() -> pd.DataFrame:
 
 
 def get_flights_with_hotels() -> pd.DataFrame:
-    """Get flights and hotels from Modlin Airport and TUI."""
+    """Get flights and hotels from Modlin Airport and TUI.
+    :rtype: pandas.DataFrame
+    :return: DataFrame containing flights with hotel info
+    """
     query_file = "queries/flights_hotels.rq"
 
     df = engine.select(
@@ -74,10 +98,13 @@ def get_flights_with_hotels_params(
 
     The output is filtered by the given parameters.
 
-    Args:
-        max_price_per_day (int): Maximum price per day for hotel.
-        duration (int): Duration of the stay.
-        min_standard (float): Minimum standard of the hotel."""
+    
+    :param int max_price_per_day: Maximum price per day for hotel.
+    :param int duration: Duration of the stay.
+    :param float min_standard: Minimum standard of the hotel.
+    :rtype: pandas.DataFrame
+    :return: DataFrame containing filtered flights with hotel info
+    """
     today = datetime.today()
     one_month_later = today + timedelta(days=30)
     departureDateFrom = today.strftime("%Y-%m-%d")
@@ -88,7 +115,7 @@ def get_flights_with_hotels_params(
         "departureDateFrom": departureDateFrom,
         "departureDateTo": departureDateTo,
         "departuresCodes": [],
-        "destinationsCodes": [],
+        "destinationsCodes": ["LON","UK"],
         "durationFrom": 6,
         "durationTo": 10,
         "filters": [
