@@ -16,7 +16,7 @@ All queries are in the sub-folder named `queries`.
 
 #### Modlin Airport
 
-Query `modln.rq` downloads the data from the Modlin airport website for all departures within the next 24 hours. The data contains information about the flight number, destination city, departure time, and current state.
+Query `modlin.rq` downloads the data from the Modlin airport website for all departures within the next 24 hours. The data contains information about the flight number, destination city, departure time, and current state.
 
 Sample Output:
 
