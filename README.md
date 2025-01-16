@@ -186,4 +186,26 @@ Project Plan - Final milestone:
 5. Jupyter notebook with usage examples
 6. Documentation of our solution
 
-        
+## 15.01.2025
+
+What we prepared:
+1. A python module with functions executing our sparql anything queries using pysparql_anything library
+2. Jinja templates for our queries to customize them with user's input
+3. Demo of our solution - a jupyter notebook with explanation of how to use it and examples.
+
+What we presented:
+1. Sample outputs generated in our notebook.
+2. Descriptions of how to use our solution.
+3. An issue with caching of queries in pysparql_anything, even when the query was changed.
+4. We overcame the optimization problem of dbpedia attractions query by quering it separetely for different cities and merging results.
+
+Questions:
+1. What should we focus on when preparing presentation?
+
+What answers we received:
+
+Project Plan - Presentation Day:
+1. Prepare a presentation of our project, where we describe the sparql anything tool, explain the possible ways of using it (CLI, python, similar to jena fuseki), show sample queries for non-kg data, present our use case, highlight the limitations of the tool
+2. Prepare screenshots/videos of running sparql anything queries
+3. Create issues for sparql-anything github
+4. Add more descriptions to our notebook
